@@ -1,4 +1,4 @@
-import { PUSH_MODAL_WINDOW, INSERT_MODAL_WINDOW, POP_MODAL_WINDOW, CLEAR_MODAL_WINDOWS } from './ActionTypes';
+import { PUSH_MODAL_WINDOW, INSERT_MODAL_WINDOW, POP_MODAL_WINDOW, SHIFT_MODAL_WINDOW, CLEAR_MODAL_WINDOWS } from './ActionTypes';
 
 const initialState = {
     types: [],
@@ -23,6 +23,12 @@ export default (state = initialState, action) => {
         };
 
     case POP_MODAL_WINDOW:
+        return {
+            types: types.slice(0, types.length - 1),
+            props: props.slice(0, types.length - 1)
+        };
+
+    case SHIFT_MODAL_WINDOW:
         return {
             types: types.slice(1),
             props: props.slice(1)

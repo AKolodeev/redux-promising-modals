@@ -1,4 +1,4 @@
-import { PUSH_MODAL_WINDOW, INSERT_MODAL_WINDOW, POP_MODAL_WINDOW, CLEAR_MODAL_WINDOWS } from './ActionTypes';
+import { PUSH_MODAL_WINDOW, INSERT_MODAL_WINDOW, POP_MODAL_WINDOW, SHIFT_MODAL_WINDOW, CLEAR_MODAL_WINDOWS } from './ActionTypes';
 
 export const pushModalWindow = (type, props) => ({
     type: PUSH_MODAL_WINDOW,
@@ -18,6 +18,13 @@ export const insertModalWindow = (type, props) => ({
 
 export const popModalWindow = values => ({
     type: POP_MODAL_WINDOW,
+    payload: {
+        values
+    }
+});
+
+export const shiftModalWindow = values => ({
+    type: SHIFT_MODAL_WINDOW,
     payload: {
         values
     }
