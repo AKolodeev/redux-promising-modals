@@ -10,6 +10,7 @@
     "rules": {
         "indent": ["error", 4],
         "comma-dangle": 0,
-        "arrow-parens": ["error", "as-needed"]
+        "arrow-parens": ["error", "as-needed"],
+        "max-len": ["error", 120]
     }
 }
