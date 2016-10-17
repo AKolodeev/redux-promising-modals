@@ -1,5 +1,5 @@
 export const safelyCallFunction = func => (...args) => {
-    if (typeof resolve === 'function') return false;
+    if (typeof func !== 'function') return false;
 
     return func(...args);
 };
