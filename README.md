@@ -1,6 +1,6 @@
 ##Synopsis
 A middleware, reducer and actions for manipulating modal windows.  
-It provides only these things. If you want see modal window, you could use [react-modal](https://github.com/reactjs/react-modal).
+This library provides only these things. If you want to see modal window, you could use [react-modal](https://github.com/reactjs/react-modal).
 
 ##Code Example
 *Adding modal's reducer:*  
@@ -39,25 +39,26 @@ popModalWindow({newFileName: 'your_file.txt'});
 
 ##Motivation
 *For example:*  
-You need to show a modal window to a user. The user manipulating with the content of the window and then closes it. You want to see the result of these manipulation.
+You need to show a modal window to a user. The user manipulates with the content of the window and then closes it. You want to see the result of these manipulation.
 
 ##Installation
 `npm i --save redux-promising-modals`  
 
 ##API Reference
-PUSH_MODAL_WINDOW, INSERT_MODAL_WINDOW, POP_MODAL_WINDOW, CLEAR_MODAL_WINDOWS - the types of actions.
+`PUSH_MODAL_WINDOW`, `INSERT_MODAL_WINDOW`, `POP_MODAL_WINDOW`, `CLEAR_MODAL_WINDOWS` - the types of actions.
 
-modalsMiddleware - the middleware for working with modals.  
-If the type of action passing throug it is PUSH_MODAL_WINDOW or INSERT_MODAL_WINDOW you can expect that a Promise will be returned.  
-If the type is POP_MODAL_WINDOW the Promise will be resolved and the result will be granted.
+`modalsMiddleware` - the middleware for working with modals.  
+If the type of action passing through it is PUSH_MODAL_WINDOW or INSERT_MODAL_WINDOW you can expect that a Promise will be returned.  
+If the type is SHIFT_MODAL_WINDOW or POP_MODAL_WINDOW the Promise will be resolved and the result will be granted.
 CLEAR_MODAL_WINDOWS resolves all Promises.
 
-pushModalWindow(modalType, modalProps) - adds a modal of type modalType (expects a String type but this is not necessary)  with modalProps (could be anything)in the end of modals array.
-insertModalWindow(modalType, modalProps) - adds a modal int the begining of modals array.
-popModalWindow(values) - removes the first (current) window from modals array.
-clearModalWindows() - clears modals array.
+`pushModalWindow(modalType, modalProps)` - adds a modal of type modalType (expects a String type but this is not necessary)  with modalProps (could be anything) in the end of modals array.
+`insertModalWindow(modalType, modalProps)` - adds a modal in the beginning of modals array.
+`popModalWindow(values)` - removes the last window from modals array.
+`shiftModalWindow(values)` - remove the first (current) window from modals array.
+`clearModalWindows()` - clears modals array.
 
-modalsReducer - a reducer for modals (keep modals types and props in an array).
+`modalsReducer` - a reducer for modals (keep modals types and props in an array).
 
 ##License
 MIT
