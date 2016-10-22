@@ -1,6 +1,6 @@
 {
   "name": "redux-promising-modals",
-  "version": "1.0.2",
+  "version": "2.0.0",
   "description": "A middleware, reducer and actions for manipulating modal windows",
   "main": "lib/index.js",
   "scripts": {
