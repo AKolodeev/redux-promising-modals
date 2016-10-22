@@ -52,13 +52,13 @@ If the type of action passing through it is PUSH_MODAL_WINDOW or INSERT_MODAL_WI
 If the type is SHIFT_MODAL_WINDOW or POP_MODAL_WINDOW the Promise will be resolved and the result will be granted.
 CLEAR_MODAL_WINDOWS resolves all Promises.
 
-`pushModalWindow(modalType, modalProps)` - adds a modal of type modalType (expects a String type but this is not necessary)  with modalProps (could be anything) in the end of modals array.
-`insertModalWindow(modalType, modalProps)` - adds a modal in the beginning of modals array.
-`popModalWindow(values)` - removes the last window from modals array.
-`shiftModalWindow(values)` - remove the first (current) window from modals array.
-`clearModalWindows()` - clears modals array.
+`pushModalWindow(modalType, modalProps)` - adds a modal of type modalType (expects a String type but this is not necessary)  with modalProps (could be anything) in the end of modals array.  
+`insertModalWindow(modalType, modalProps)` - adds a modal in the beginning of modals array.  
+`popModalWindow(values)` - removes the last window from modals array.  
+`shiftModalWindow(values)` - remove the first (current) window from modals array.  
+`clearModalWindows()` - clears modals array.  
 
-`modalsReducer` - a reducer for modals (keep modals types and props in an array).
+`modalsReducer` - a reducer for modals (keep modals types and props in an array).  
 
 ##License
 MIT
