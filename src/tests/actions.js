@@ -24,7 +24,9 @@ describe('Action creators tests', () => {
                     props: actionProps
                 }
             },
-            result: pushModalWindow(actionType, actionProps)
+            get result() {
+                return pushModalWindow(actionType, actionProps);
+            }
         },
         {
             name: 'insertModalWindow',
@@ -35,7 +37,9 @@ describe('Action creators tests', () => {
                     props: actionProps
                 }
             },
-            result: insertModalWindow(actionType, actionProps)
+            get result() {
+                return insertModalWindow(actionType, actionProps);
+            }
         },
         {
             name: 'popModalWindow',
@@ -45,7 +49,9 @@ describe('Action creators tests', () => {
                     values: result
                 }
             },
-            result: popModalWindow(result)
+            get result() {
+                return popModalWindow(result);
+            }
         },
         {
             name: 'shiftModalWindow',
@@ -55,14 +61,18 @@ describe('Action creators tests', () => {
                     values: result
                 }
             },
-            result: shiftModalWindow(result)
+            get result() {
+                return shiftModalWindow(result);
+            }
         },
         {
             name: 'clearModalWindows',
             expected: {
                 type: CLEAR_MODAL_WINDOWS,
             },
-            result: clearModalWindows()
+            get result() {
+                return clearModalWindows();
+            }
         },
     ];
 
