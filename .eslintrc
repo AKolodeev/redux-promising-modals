@@ -11,6 +11,7 @@
         "indent": ["error", 4],
         "comma-dangle": 0,
         "arrow-parens": ["error", "as-needed"],
-        "max-len": ["error", 120]
+        "max-len": ["error", 120],
+        "import/no-extraneous-dependencies": 0
     }
 }
