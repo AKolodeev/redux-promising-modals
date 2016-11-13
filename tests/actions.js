@@ -1,9 +1,7 @@
 import { describe, it } from 'mocha';
 import { assert } from 'chai';
-import { pushModalWindow, insertModalWindow, popModalWindow, shiftModalWindow, clearModalWindows } from '../actions';
-import {
-    PUSH_MODAL_WINDOW, INSERT_MODAL_WINDOW, POP_MODAL_WINDOW, SHIFT_MODAL_WINDOW, CLEAR_MODAL_WINDOWS
-} from '../ActionTypes';
+import * as actions from '../src/actions';
+import * as types from '../src/ActionTypes';
 
 describe('Action creators tests', () => {
     const actionType = 'CREATE_USER';
@@ -18,60 +16,60 @@ describe('Action creators tests', () => {
         {
             name: 'pushModalWindow',
             expected: {
-                type: PUSH_MODAL_WINDOW,
+                type: types.PUSH_MODAL_WINDOW,
                 payload: {
                     type: actionType,
                     props: actionProps
                 }
             },
             get result() {
-                return pushModalWindow(actionType, actionProps);
+                return actions.pushModalWindow(actionType, actionProps);
             }
         },
         {
             name: 'insertModalWindow',
             expected: {
-                type: INSERT_MODAL_WINDOW,
+                type: types.INSERT_MODAL_WINDOW,
                 payload: {
                     type: actionType,
                     props: actionProps
                 }
             },
             get result() {
-                return insertModalWindow(actionType, actionProps);
+                return actions.insertModalWindow(actionType, actionProps);
             }
         },
         {
             name: 'popModalWindow',
             expected: {
-                type: POP_MODAL_WINDOW,
+                type: types.POP_MODAL_WINDOW,
                 payload: {
                     values: result
                 }
             },
             get result() {
-                return popModalWindow(result);
+                return actions.popModalWindow(result);
             }
         },
         {
             name: 'shiftModalWindow',
             expected: {
-                type: SHIFT_MODAL_WINDOW,
+                type: types.SHIFT_MODAL_WINDOW,
                 payload: {
                     values: result
                 }
             },
             get result() {
-                return shiftModalWindow(result);
+                return actions.shiftModalWindow(result);
             }
         },
         {
             name: 'clearModalWindows',
             expected: {
-                type: CLEAR_MODAL_WINDOWS,
+                type: types.CLEAR_MODAL_WINDOWS,
             },
             get result() {
-                return clearModalWindows();
+                return actions.clearModalWindows();
             }
         },
     ];
