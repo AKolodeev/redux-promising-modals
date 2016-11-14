@@ -10,9 +10,10 @@ const safelyResolveAction = (resolve, action) => {
 };
 
 export default () => next => {
-    const resolveFunctions = [];
+    const resolveFunctions = []; // сделать pop и shift
     const actionsHandlers = {
-        [PUSH_MODAL_WINDOW]: () => new Promise(resolve => resolveFunctions.push(resolve)),
+        [PUSH_MODAL_WINDOW]: (action) => !action.payload.types.length ? new Promise(resolve => resolveFunctions.push(resolve)) 
+            : action.payload.props.map(prop => new Promise(resolve => resolveFunctions.push(resolve))),
         [INSERT_MODAL_WINDOW]: () => new Promise(resolve => resolveFunctions.unshift(resolve)),
         [POP_MODAL_WINDOW]: action => {
             const resolve = resolveFunctions.pop();
@@ -25,6 +26,14 @@ export default () => next => {
         [CLEAR_MODAL_WINDOWS]: () => {
             resolveFunctions.forEach(resolve => resolve());
             resolveFunctions.splice(0, resolveFunctions.length);
+        },
+        [NEXT_MODAL_WINDOW]: () => {
+            const resolve = resolveFunctions.shift();
+            resolveFunctions.pop(resolve)
+        },
+        [PREV_MODAL_WINDOW]: () => {
+            const resolve = resolveFunctions.pop();
+            resolveFunctions.unshift(resolve)
         }
     };
 
