@@ -10,7 +10,7 @@ const safelyResolveAction = (resolve, action) => {
 };
 
 export default () => next => {
-    const resolveFunctions = []; // сделать pop и shift
+    const resolveFunctions = [];
     const actionsHandlers = {
         [PUSH_MODAL_WINDOW]: (action) => !action.payload.types.length ? new Promise(resolve => resolveFunctions.push(resolve)) 
             : action.payload.props.map(prop => new Promise(resolve => resolveFunctions.push(resolve))),
