@@ -35,3 +35,11 @@ export const shiftModalWindow = values => ({
 export const clearModalWindows = () => ({
     type: CLEAR_MODAL_WINDOWS
 });
+
+export const nextModalWindow = () => ({
+    type: NEXT_MODAL_WINDOW
+});
+
+export const prevModalWindow = () => ({
+    type: PREV_MODAL_WINDOW
+});
