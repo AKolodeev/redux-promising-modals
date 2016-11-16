@@ -35,6 +35,17 @@ export default (state = initialState, action) => {
             types: types.slice(1),
             props: props.slice(1)
         };
+    case NEXT_MODAL_WINDOW:
+        return {
+            types: getNextType(types),
+            props: getNextProp(props)
+        };
+
+    case PREV_MODAL_WINDOW:
+        return {
+            types: getPrevType(types),
+            props: getPrevProp(props)
+        };
 
     case CLEAR_MODAL_WINDOWS:
         return initialState;
