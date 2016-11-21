@@ -1,7 +1,8 @@
 import {
-    PUSH_MODAL_WINDOW, INSERT_MODAL_WINDOW, POP_MODAL_WINDOW, SHIFT_MODAL_WINDOW, CLEAR_MODAL_WINDOWS
+    PUSH_MODAL_WINDOW, INSERT_MODAL_WINDOW, POP_MODAL_WINDOW, SHIFT_MODAL_WINDOW, CLEAR_MODAL_WINDOWS,
+    NEXT_MODAL_WINDOW, PREV_MODAL_WINDOW
 } from './ActionTypes';
-import { safelyCallFunction, getActionValues } from './utils';
+import { safelyCallFunction, getActionValues, rotateArray } from './utils';
 
 const safelyResolveAction = (resolve, action) => {
     const values = getActionValues(action);
@@ -12,8 +13,18 @@ const safelyResolveAction = (resolve, action) => {
 export default () => next => {
     const resolveFunctions = [];
     const actionsHandlers = {
-        [PUSH_MODAL_WINDOW]: () => new Promise(resolve => resolveFunctions.push(resolve)),
-        [INSERT_MODAL_WINDOW]: () => new Promise(resolve => resolveFunctions.unshift(resolve)),
+        [PUSH_MODAL_WINDOW]: action => {
+            const newPromises = action.payload.types.map(() =>
+                new Promise(resolve => resolveFunctions.push(resolve))
+            );
+            return newPromises.length === 1 ? newPromises.shift() : newPromises;
+        },
+        [INSERT_MODAL_WINDOW]: action => {
+            const newPromises = action.payload.types.map(() =>
+                new Promise(resolve => resolveFunctions.unshift(resolve))
+            );
+            return newPromises.length === 1 ? newPromises.shift() : newPromises;
+        },
         [POP_MODAL_WINDOW]: action => {
             const resolve = resolveFunctions.pop();
             safelyResolveAction(resolve, action);
@@ -25,6 +36,12 @@ export default () => next => {
         [CLEAR_MODAL_WINDOWS]: () => {
             resolveFunctions.forEach(resolve => resolve());
             resolveFunctions.splice(0, resolveFunctions.length);
+        },
+        [NEXT_MODAL_WINDOW]: () => {
+            rotateArray(resolveFunctions, false);
+        },
+        [PREV_MODAL_WINDOW]: () => {
+            rotateArray(resolveFunctions);
         }
     };
 

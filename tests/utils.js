@@ -34,4 +34,46 @@ describe('utils tests', () => {
             assert.deepEqual(action.payload.values, utils.getActionValues(action))
         );
     });
+
+    describe('rotateArray', () => {
+        it('should not mutate argument', () => {
+            const data = [1, 2, 3];
+            const dataCopy = data.slice();
+
+            utils.rotateArray(data);
+            utils.rotateArray(data, false);
+
+            assert.deepEqual(dataCopy, data);
+        });
+
+        it('should make last element first', () => {
+            const testData1 = [1, 2, 3, 4, 5];
+            const expectedResult1 = [5, 1, 2, 3, 4];
+            const testData2 = [1];
+            const expectedResult2 = [1];
+
+            assert.deepEqual(expectedResult1, utils.rotateArray(testData1));
+            assert.deepEqual(expectedResult2, utils.rotateArray(testData2));
+        });
+
+        it('should make first element last', () => {
+            const testData1 = [1, 2, 3, 4, 5];
+            const expectedResult1 = [2, 3, 4, 5, 1];
+            const testData2 = [1];
+            const expectedResult2 = [1];
+
+            assert.deepEqual(expectedResult1, utils.rotateArray(testData1, false));
+            assert.deepEqual(expectedResult2, utils.rotateArray(testData2, false));
+        });
+    });
+
+    describe('toArray', () => {
+        it('converts single element into array', () => {
+            const elem = 'Hello';
+            const arrayOfElements = [elem, elem];
+
+            assert.isArray(utils.toArray(elem));
+            assert.isArray(utils.toArray(arrayOfElements));
+        });
+    });
 });

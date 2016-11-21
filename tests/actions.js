@@ -18,8 +18,8 @@ describe('Action creators tests', () => {
             expected: {
                 type: types.PUSH_MODAL_WINDOW,
                 payload: {
-                    type: actionType,
-                    props: actionProps
+                    types: [actionType],
+                    props: [actionProps]
                 }
             },
             get result() {
@@ -31,8 +31,8 @@ describe('Action creators tests', () => {
             expected: {
                 type: types.INSERT_MODAL_WINDOW,
                 payload: {
-                    type: actionType,
-                    props: actionProps
+                    types: [actionType],
+                    props: [actionProps]
                 }
             },
             get result() {
@@ -66,12 +66,30 @@ describe('Action creators tests', () => {
         {
             name: 'clearModalWindows',
             expected: {
-                type: types.CLEAR_MODAL_WINDOWS,
+                type: types.CLEAR_MODAL_WINDOWS
             },
             get result() {
                 return actions.clearModalWindows();
             }
         },
+        {
+            name: 'nextModalWindow',
+            expected: {
+                type: types.NEXT_MODAL_WINDOW
+            },
+            get result() {
+                return actions.nextModalWindow();
+            }
+        },
+        {
+            name: 'prevModalWindow',
+            expected: {
+                type: types.PREV_MODAL_WINDOW
+            },
+            get result() {
+                return actions.prevModalWindow();
+            }
+        }
     ];
 
     actionCreators.forEach(actionCreator => describe(actionCreator.name, () =>
