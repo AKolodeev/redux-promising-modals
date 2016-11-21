@@ -11,7 +11,7 @@ const safelyResolveAction = (resolve, action) => {
 };
 
 export default () => next => {
-    const resolveFunctions = [];
+    let resolveFunctions = [];
     const actionsHandlers = {
         [PUSH_MODAL_WINDOW]: action => {
             const newPromises = action.payload.types.map(() =>
@@ -38,10 +38,10 @@ export default () => next => {
             resolveFunctions.splice(0, resolveFunctions.length);
         },
         [NEXT_MODAL_WINDOW]: () => {
-            rotateArray(resolveFunctions, false);
+            resolveFunctions = rotateArray(resolveFunctions, false);
         },
         [PREV_MODAL_WINDOW]: () => {
-            rotateArray(resolveFunctions);
+            resolveFunctions = rotateArray(resolveFunctions);
         }
     };
 
