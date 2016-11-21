@@ -1,20 +1,22 @@
 import {
-    PUSH_MODAL_WINDOW, INSERT_MODAL_WINDOW, POP_MODAL_WINDOW, SHIFT_MODAL_WINDOW, CLEAR_MODAL_WINDOWS
+    PUSH_MODAL_WINDOW, INSERT_MODAL_WINDOW, POP_MODAL_WINDOW, SHIFT_MODAL_WINDOW, CLEAR_MODAL_WINDOWS,
+    NEXT_MODAL_WINDOW, PREV_MODAL_WINDOW
 } from './ActionTypes';
+import { toArray } from './utils';
 
-export const pushModalWindow = (type, props) => ({
+export const pushModalWindow = (types, props) => ({
     type: PUSH_MODAL_WINDOW,
     payload: {
-        type,
-        props
+        types: toArray(types),
+        props: toArray(props)
     }
 });
 
-export const insertModalWindow = (type, props) => ({
+export const insertModalWindow = (types, props) => ({
     type: INSERT_MODAL_WINDOW,
     payload: {
-        type,
-        props
+        types: toArray(types),
+        props: toArray(props)
     }
 });
 
@@ -34,4 +36,12 @@ export const shiftModalWindow = values => ({
 
 export const clearModalWindows = () => ({
     type: CLEAR_MODAL_WINDOWS
+});
+
+export const nextModalWindow = () => ({
+    type: NEXT_MODAL_WINDOW
+});
+
+export const prevModalWindow = () => ({
+    type: PREV_MODAL_WINDOW
 });

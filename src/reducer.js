@@ -1,6 +1,8 @@
 import {
-    PUSH_MODAL_WINDOW, INSERT_MODAL_WINDOW, POP_MODAL_WINDOW, SHIFT_MODAL_WINDOW, CLEAR_MODAL_WINDOWS
+    PUSH_MODAL_WINDOW, INSERT_MODAL_WINDOW, POP_MODAL_WINDOW, SHIFT_MODAL_WINDOW, CLEAR_MODAL_WINDOWS,
+    NEXT_MODAL_WINDOW, PREV_MODAL_WINDOW
 } from './ActionTypes';
+import { rotateArray } from './utils';
 
 const initialState = {
     types: [],
@@ -34,6 +36,18 @@ export default (state = initialState, action) => {
         return {
             types: types.slice(1),
             props: props.slice(1)
+        };
+
+    case NEXT_MODAL_WINDOW:
+        return {
+            types: rotateArray(types),
+            props: rotateArray(props)
+        };
+
+    case PREV_MODAL_WINDOW:
+        return {
+            types: rotateArray(types, false),
+            props: rotateArray(props, false)
         };
 
     case CLEAR_MODAL_WINDOWS:
