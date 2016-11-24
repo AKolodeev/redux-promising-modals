@@ -16,14 +16,14 @@ export default (state = initialState, action) => {
     switch (type) {
     case PUSH_MODAL_WINDOW:
         return {
-            types: types.concat(payload.type),
+            types: types.concat(payload.types),
             props: props.concat(payload.props)
         };
 
     case INSERT_MODAL_WINDOW:
         return {
-            types: [payload.type].concat(types),
-            props: [payload.props].concat(props)
+            types: payload.types.concat(types),
+            props: payload.props.concat(props)
         };
 
     case POP_MODAL_WINDOW:
@@ -40,14 +40,14 @@ export default (state = initialState, action) => {
 
     case NEXT_MODAL_WINDOW:
         return {
-            types: rotateArray(types),
-            props: rotateArray(props)
+            types: rotateArray(types, false),
+            props: rotateArray(props, false)
         };
 
     case PREV_MODAL_WINDOW:
         return {
-            types: rotateArray(types, false),
-            props: rotateArray(props, false)
+            types: rotateArray(types),
+            props: rotateArray(props)
         };
 
     case CLEAR_MODAL_WINDOWS:

@@ -13,4 +13,17 @@ describe('middleware tests', () => {
             assert.instanceOf(mockStore.dispatch(action), Promise)
         )
     );
+
+    it('should return an array of promises if PUSH_MODAL_WINDOW or INSERT_MODAL_WINDOW passed', () => {
+        const modalsTypes = ['FirstType', 'SecondType'];
+        const modalsProps = [{ prop: 'Foo' }, { anotherProp: 'bar' }];
+
+        [actions.pushModalWindow(modalsTypes, modalsProps), actions.insertModalWindow(modalsTypes, modalsProps)]
+            .forEach(action => {
+                const result = mockStore.dispatch(action);
+
+                assert.isArray(result);
+                result.forEach(promise => assert.instanceOf(promise, Promise));
+            });
+    });
 });
