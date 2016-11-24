@@ -27,6 +27,12 @@ import { pushModalWindow } from 'redux-promising-modals';
 ...
 pushModalWindow('EDIT_FILE_DIALOG', {fileName: 'my_file.txt'})
   .then(result => /* do something with the result */);
+
+...
+
+const promisesArray = pushModalWindow(['EDIT_FILE_DIALOG', 'REMOVE_FILE_DIALOG'], [{fileName: 'my_file.txt'}, {fileName: old_file.txt, _createdOn: 1480021259507}];
+
+Promise.all(promisesArray).then(() => /* all promises are resolved (each window was closed) */);
 ...
 
 /* when need to close a window with 'EDIT_FILE_DIALOG' type */
@@ -52,11 +58,13 @@ If the type of action passing through it is PUSH_MODAL_WINDOW or INSERT_MODAL_WI
 If the type is SHIFT_MODAL_WINDOW or POP_MODAL_WINDOW the Promise will be resolved and the result will be granted.
 CLEAR_MODAL_WINDOWS resolves all Promises.
 
-`pushModalWindow(modalType, modalProps)` - adds a modal of type modalType (expects a String type but this is not necessary)  with modalProps (could be anything) in the end of modals array.  
-`insertModalWindow(modalType, modalProps)` - adds a modal in the beginning of modals array.  
+`pushModalWindow(modalTypes, modalProps)` - adds modal of type modalType (expects a String type but this is not necessary)  with modalProps (could be anything) in the end of modals array. `modalTypes` and `modalProps` can be either an array or a single element (see Code Example).  
+`insertModalWindow(modalTypes, modalProps)` - adds a modal in the beginning of modals array.  
 `popModalWindow(values)` - removes the last window from modals array.  
 `shiftModalWindow(values)` - remove the first (current) window from modals array.  
 `clearModalWindows()` - clears modals array.  
+`nextModalWindow()` - replaces current window by the next.
+`prevModalWindow()` - replaces current window by the previous one.
 
 `modalsReducer` - a reducer for modals (keep modals types and props in an array).  
 
