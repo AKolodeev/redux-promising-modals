@@ -1,5 +1,11 @@
-import { createStore, applyMiddleware } from 'redux';
+import { createStore, applyMiddleware, compose } from 'redux';
 import { modalsMiddleware } from 'redux-promising-modals';
 import appReducer from './app.reducer';
+import appDevTools from './app.devTools';
 
-export default createStore(appReducer,applyMiddleware(modalsMiddleware));
+const enhancer = compose(
+    applyMiddleware(modalsMiddleware),
+    appDevTools.instrument()
+);
+
+export default createStore(appReducer, enhancer);

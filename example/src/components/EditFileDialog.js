@@ -1,12 +1,11 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { popModalWindow } from 'redux-promising-modals';
-import { CONFIRM, CANCEL } from '../resultTypes';
 
-class EditFileDialog extends Component {
+export default class EditFileDialog extends Component {
     static propTypes = {
-        initialFileName: PropTypes.string
+        initialFileName: PropTypes.string,
+        resultTypes: PropTypes.object,
+        popModalWindow: PropTypes.func
     };
 
     static defaultProps = {
@@ -18,13 +17,13 @@ class EditFileDialog extends Component {
     };
 
     render() {
-        const { popModalWindow } = this.props;
+        const { resultTypes: { CONFIRM, CANCEL }, popModalWindow } = this.props;
         const { newFileName } = this.state;
 
         return (
             <div>
                 <label>
-                    Enter new filename:
+                    <span>Enter new filename:</span>
                     <input type="text" value={newFileName} onChange={event => this.handleFileNameChange(event)} />
                 </label>
                 <button type="button" onClick={() => popModalWindow({ type: CONFIRM, newFileName })}>Confirm</button>
@@ -39,5 +38,3 @@ class EditFileDialog extends Component {
         });
     }
 }
-
-export default connect(state => state, { popModalWindow })(EditFileDialog);
