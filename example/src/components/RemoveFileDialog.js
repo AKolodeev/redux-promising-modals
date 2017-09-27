@@ -2,13 +2,13 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const RemoveFileDialog = props => {
-    const { fileName, resultTypes: { CONFIRM, CANCEL }, popModalWindow } = props;
+    const { fileName, resultTypes: { MODAL_TYPE_CONFIRM, MODAL_TYPE_CANCEL }, popModalWindow } = props;
 
     return (
         <div>
             <p>Remove {fileName}?</p>
-            <button type="button" onClick={() => popModalWindow({ type: CONFIRM })}>Confirm</button>
-            <button type="button" onClick={() => popModalWindow({ type: CANCEL })}>Cancel</button>
+            <button type="button" onClick={() => popModalWindow({ status: MODAL_TYPE_CONFIRM })}>Confirm</button>
+            <button type="button" onClick={() => popModalWindow({ status: MODAL_TYPE_CANCEL })}>Cancel</button>
         </div>
     );
 };
