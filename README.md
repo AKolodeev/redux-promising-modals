@@ -1,6 +1,7 @@
 ## Synopsis
 A middleware, reducer and actions for manipulating modal windows.  
-The library provides only these things. If you want to see modal window, you could use [react-modal](https://github.com/reactjs/react-modal).
+The library provides only these things. If you want to see modal window, you could use [react-modal](https://github.com/reactjs/react-modal).  
+See [working example](https://akolodeev.github.io/redux-promising-modals) at gh-pages.
 
 ## Code Example
 ### Adding modals' reducer:
