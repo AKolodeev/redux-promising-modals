@@ -29,10 +29,9 @@ class App extends Component {
 
     handleEditFileBtnClick() {
         this.props.pushModalWindow(EDIT_FILE_DIALOG, { initialFileName: 'my_file.txt' })
-            .then(({ type, newFileName }) => {
-                // got modal exit status as *type* and newFileName
+            .then(({ status, newFileName }) => {
                 // ToDo: ajax request and processing
-                if (type === MODAL_TYPE_CONFIRM) {
+                if (status === MODAL_TYPE_CONFIRM) {
                     console.log('OK. New name: %s', newFileName);
                 }
             });
@@ -40,10 +39,9 @@ class App extends Component {
 
     handleRemoveFileBtnClick() {
         this.props.pushModalWindow(REMOVE_FILE_DIALOG, { fileName: 'my_file.txt' })
-            .then(({ type }) => {
-                // got modal exit status as *type*
+            .then(({ status }) => {
                 // ToDo: ajax request and processing
-                if (type === MODAL_TYPE_CONFIRM) {
+                if (status === MODAL_TYPE_CONFIRM) {
                     console.log('OK, file removed');
                 }
             });

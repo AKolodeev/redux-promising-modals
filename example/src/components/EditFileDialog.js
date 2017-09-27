@@ -38,17 +38,17 @@ export default class EditFileDialog extends Component {
     }
 
     handleConfirmBtnClick() {
-        const { resultTypes: { CONFIRM }, popModalWindow } = this.props;
+        const { resultTypes: { MODAL_TYPE_CONFIRM }, popModalWindow } = this.props;
         const { newFileName } = this.state;
 
-        // Close the modal with "CONFIRM" status and provide new file name
-        popModalWindow({ status: CONFIRM, newFileName });
+        // Close the modal with confirm status and provide new file name
+        popModalWindow({ status: MODAL_TYPE_CONFIRM, newFileName });
     }
 
     handleCancelBtnClick() {
-        const { resultTypes: { CANCEL }, popModalWindow } = this.props;
+        const { resultTypes: { MODAL_TYPE_CANCEL }, popModalWindow } = this.props;
 
         // Just closing the modal
-        popModalWindow({ status: CANCEL });
+        popModalWindow({ status: MODAL_TYPE_CANCEL });
     }
 }
