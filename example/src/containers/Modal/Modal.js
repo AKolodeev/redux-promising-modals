@@ -4,23 +4,18 @@ import { connect } from 'react-redux';
 import ModalContainer from 'react-modal';
 import { popModalWindow } from 'redux-promising-modals';
 import { EditFileDialog, RemoveFileDialog } from '../../components';
-import { ModalResultTypes } from '../../constants';
+import { EDIT_FILE_DIALOG, REMOVE_FILE_DIALOG } from '../../constants/modalTypes';
+import * as modalResultTypes from '../../constants/modalResultTypes';
 import modalSelector from './modal.selector';
+
+const modalsMap = new Map([
+    [EDIT_FILE_DIALOG, EditFileDialog],
+    [REMOVE_FILE_DIALOG, RemoveFileDialog]
+]);
 
 const Modal = props => {
     const { modalType, modalProps, popModalWindow } = props;
-    let Component;
-
-    switch (modalType) {
-    case 'EDIT_FILE_DIALOG':
-        Component = EditFileDialog;
-        break;
-    case 'REMOVE_FILE_DIALOG':
-        Component = RemoveFileDialog;
-        break;
-    default:
-        Component = false;
-    }
+    const Component = modalsMap.get(modalType) || null;
 
     return Component && (
         <ModalContainer
@@ -29,7 +24,7 @@ const Modal = props => {
         >
             <Component
                 {...modalProps}
-                resultTypes={ModalResultTypes}
+                resultTypes={modalResultTypes}
                 popModalWindow={popModalWindow}
             />
         </ModalContainer>

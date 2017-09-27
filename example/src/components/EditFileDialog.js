@@ -17,7 +17,6 @@ export default class EditFileDialog extends Component {
     };
 
     render() {
-        const { resultTypes: { CONFIRM, CANCEL }, popModalWindow } = this.props;
         const { newFileName } = this.state;
 
         return (
@@ -26,8 +25,8 @@ export default class EditFileDialog extends Component {
                     <span>Enter new filename:</span>
                     <input type="text" value={newFileName} onChange={event => this.handleFileNameChange(event)} />
                 </label>
-                <button type="button" onClick={() => popModalWindow({ type: CONFIRM, newFileName })}>Confirm</button>
-                <button type="button" onClick={() => popModalWindow({ type: CANCEL })}>Cancel</button>
+                <button type="button" onClick={() => this.handleConfirmBtnClick()}>Confirm</button>
+                <button type="button" onClick={() => this.handleCancelBtnClick()}>Cancel</button>
             </div>
         );
     }
@@ -36,5 +35,20 @@ export default class EditFileDialog extends Component {
         this.setState({
             newFileName: event.currentTarget.value
         });
+    }
+
+    handleConfirmBtnClick() {
+        const { resultTypes: { CONFIRM }, popModalWindow } = this.props;
+        const { newFileName } = this.state;
+
+        // Close the modal with "CONFIRM" status and provide new file name
+        popModalWindow({ status: CONFIRM, newFileName });
+    }
+
+    handleCancelBtnClick() {
+        const { resultTypes: { CANCEL }, popModalWindow } = this.props;
+
+        // Just closing the modal
+        popModalWindow({ status: CANCEL });
     }
 }
