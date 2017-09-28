@@ -6,7 +6,8 @@
   "scripts": {
     "build": "babel src -d lib",
     "lint": "eslint src",
-    "test": "mocha tests --require babel-register"
+    "test": "mocha tests --require babel-register",
+    "deploy": "npm run build && npm publish"
   },
   "repository": {
     "type": "git",
