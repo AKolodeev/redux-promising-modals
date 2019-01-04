@@ -5,7 +5,7 @@
   "main": "lib/index.js",
   "scripts": {
     "build": "tsc",
-    "lint": "eslint src",
+    "lint": "eslint src && tslint -c tslint.json ./src/*",
     "test": "mocha tests --require babel-register",
     "release": "standard-version --no-verify",
     "deploy": "npm run build && npm publish"
@@ -50,6 +50,7 @@
     "redux": "^3.6.0",
     "redux-mock-store": "^1.2.1",
     "standard-version": "~4.4.0",
+    "tslint": "~5.12.0",
     "typescript": "~3.2.2"
   }
 }
