@@ -1,7 +1,7 @@
 import { describe, it } from 'mocha';
 import { assert } from 'chai';
 import reducer from '../src/reducer';
-import * as types from '../src/ActionTypes';
+import * as types from '../src/actionTypes';
 
 describe('Modals reducer tests', () => {
     const firstActionType = 'CREATE_USER';

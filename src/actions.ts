@@ -1,7 +1,12 @@
 import {
-    PUSH_MODAL_WINDOW, INSERT_MODAL_WINDOW, POP_MODAL_WINDOW, SHIFT_MODAL_WINDOW, CLEAR_MODAL_WINDOWS,
-    NEXT_MODAL_WINDOW, PREV_MODAL_WINDOW
-} from './ActionTypes';
+    CLEAR_MODAL_WINDOWS,
+    INSERT_MODAL_WINDOW,
+    NEXT_MODAL_WINDOW,
+    POP_MODAL_WINDOW,
+    PREV_MODAL_WINDOW,
+    PUSH_MODAL_WINDOW,
+    SHIFT_MODAL_WINDOW
+} from './actionTypes';
 import { toArray } from './utils';
 
 export const pushModalWindow = (types, props) => ({
@@ -20,14 +25,14 @@ export const insertModalWindow = (types, props) => ({
     }
 });
 
-export const popModalWindow = values => ({
+export const popModalWindow = (values) => ({
     type: POP_MODAL_WINDOW,
     payload: {
         values
     }
 });
 
-export const shiftModalWindow = values => ({
+export const shiftModalWindow = (values) => ({
     type: SHIFT_MODAL_WINDOW,
     payload: {
         values

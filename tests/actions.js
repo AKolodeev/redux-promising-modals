@@ -1,7 +1,7 @@
 import { describe, it } from 'mocha';
 import { assert } from 'chai';
 import * as actions from '../src/actions';
-import * as types from '../src/ActionTypes';
+import * as types from '../src/actionTypes';
 
 describe('Action creators tests', () => {
     const actionType = 'CREATE_USER';
