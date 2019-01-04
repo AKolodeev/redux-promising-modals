@@ -1,15 +1,28 @@
 import {
-    PUSH_MODAL_WINDOW, INSERT_MODAL_WINDOW, POP_MODAL_WINDOW, SHIFT_MODAL_WINDOW, CLEAR_MODAL_WINDOWS,
-    NEXT_MODAL_WINDOW, PREV_MODAL_WINDOW
-} from './ActionTypes';
+    CLEAR_MODAL_WINDOWS,
+    INSERT_MODAL_WINDOW,
+    NEXT_MODAL_WINDOW,
+    POP_MODAL_WINDOW,
+    PREV_MODAL_WINDOW,
+    PUSH_MODAL_WINDOW,
+    SHIFT_MODAL_WINDOW
+} from './actionTypes';
 import { rotateArray } from './utils';
 
-const initialState = {
+type StateTypes = any[];
+type StateProps = any[];
+
+interface IModalsState {
+    types: StateTypes;
+    props: StateProps;
+}
+
+const initialState: IModalsState = {
     types: [],
     props: []
 };
 
-export default (state = initialState, action) => {
+export default (state: IModalsState = initialState, action): IModalsState => {
     const { type, payload } = action;
     const { types, props } = state;
 

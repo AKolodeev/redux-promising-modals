@@ -1,7 +1,8 @@
-import { describe, it } from 'mocha';
 import { assert } from 'chai';
+import { describe, it } from 'mocha';
+
 import * as actions from '../src/actions';
-import * as types from '../src/ActionTypes';
+import * as types from '../src/actionTypes';
 
 describe('Action creators tests', () => {
     const actionType = 'CREATE_USER';
@@ -92,7 +93,7 @@ describe('Action creators tests', () => {
         }
     ];
 
-    actionCreators.forEach(actionCreator => describe(actionCreator.name, () =>
+    actionCreators.forEach((actionCreator) => describe(actionCreator.name, () =>
         it('returns correct action object', () =>
             assert.deepEqual(actionCreator.expected, actionCreator.result)
         )

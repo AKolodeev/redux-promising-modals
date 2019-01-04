@@ -1,10 +1,12 @@
-export const safelyCallFunction = func => (...args) => {
-    if (typeof func !== 'function') return false;
+export const safelyCallFunction = (func) => (...args) => {
+    if (typeof func !== 'function') {
+        return false;
+    }
 
     return func(...args);
 };
 
-export const getActionValues = action => action.payload && action.payload.values;
+export const getActionValues = (action) => action.payload && action.payload.values;
 
 export const rotateArray = (array, clockwise = true) => {
     const startPos = clockwise ? array.length - 1 : 0;
@@ -13,4 +15,4 @@ export const rotateArray = (array, clockwise = true) => {
     return clockwise ? firstElem.concat(arrayCopy) : arrayCopy.concat(firstElem);
 };
 
-export const toArray = element => [].concat(element);
+export const toArray = (element) => [].concat(element);
