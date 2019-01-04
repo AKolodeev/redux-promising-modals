@@ -1,7 +1,8 @@
-import { describe, it } from 'mocha';
 import { assert } from 'chai';
-import reducer from '../src/reducer';
+import { describe, it } from 'mocha';
+
 import * as types from '../src/actionTypes';
+import reducer from '../src/reducer';
 
 describe('Modals reducer tests', () => {
     const firstActionType = 'CREATE_USER';
@@ -40,7 +41,8 @@ describe('Modals reducer tests', () => {
             types: [firstActionType, secondActionType],
             props: [firstActionProps, secondActionProps]
         }, reducer({
-            types: [firstActionType], props: [firstActionProps]
+            types: [firstActionType],
+            props: [firstActionProps]
         }, {
             type: types.PUSH_MODAL_WINDOW,
             payload: {

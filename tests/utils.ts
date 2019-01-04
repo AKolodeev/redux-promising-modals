@@ -1,11 +1,12 @@
-import { describe, it } from 'mocha';
 import { assert } from 'chai';
+import { describe, it } from 'mocha';
+
 import * as utils from '../src/utils';
 
 describe('utils tests', () => {
     describe('safelyCallFunction', () => {
         const foo = () => 'some result';
-        const bar = (firstArg, secondArg) => firstArg + secondArg;
+        const bar = (param1, param2) => param1 + param2;
         const firstArg = 5;
         const secondArg = 7;
 

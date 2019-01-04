@@ -9,12 +9,20 @@ import {
 } from './actionTypes';
 import { rotateArray } from './utils';
 
-const initialState = {
+type StateTypes = any[];
+type StateProps = any[];
+
+interface IModalsState {
+    types: StateTypes;
+    props: StateProps;
+}
+
+const initialState: IModalsState = {
     types: [],
     props: []
 };
 
-export default (state = initialState, action) => {
+export default (state: IModalsState = initialState, action): IModalsState => {
     const { type, payload } = action;
     const { types, props } = state;
 
