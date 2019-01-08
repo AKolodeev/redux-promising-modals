@@ -4,23 +4,16 @@ import { describe, it } from 'mocha';
 import * as utils from '../src/utils';
 
 describe('utils tests', () => {
-    describe('safelyCallFunction', () => {
-        const foo = () => 'some result';
-        const bar = (param1, param2) => param1 + param2;
-        const firstArg = 5;
-        const secondArg = 7;
+    describe('safelyResolveWithActionValues', () => {
+        const func = (param) => param * 10;
+        const action = { payload: { values: 20 } };
 
-        it('should return a function', () =>
-            assert.isFunction(utils.safelyCallFunction(foo))
-        );
-
-        it('should return the same value as passed function when invoked again', () => {
-            assert.deepEqual(foo(), utils.safelyCallFunction(foo)());
-            assert.deepEqual(bar(firstArg, secondArg), utils.safelyCallFunction(bar)(firstArg, secondArg));
+        it('should return the same value as function invoked with payload\'s values', () => {
+            assert.deepEqual(func(action.payload.values), utils.safelyResolveWithActionValues(func, action));
         });
 
         it('should return false when invoked with non-function argument', () =>
-            assert.isFalse(utils.safelyCallFunction(firstArg)())
+            assert.isFalse(utils.safelyResolveWithActionValues(undefined, action))
         );
     });
 
@@ -36,35 +29,35 @@ describe('utils tests', () => {
         );
     });
 
-    describe('rotateArray', () => {
+    describe('rotate functions', () => {
         it('should not mutate argument', () => {
             const data = [1, 2, 3];
             const dataCopy = data.slice();
 
-            utils.rotateArray(data);
-            utils.rotateArray(data, false);
+            utils.rotateClockwise(data);
+            utils.rotateCounterClockwise(data);
 
             assert.deepEqual(dataCopy, data);
         });
 
-        it('should make last element first', () => {
+        it('rotateClockwise should make last element first', () => {
             const testData1 = [1, 2, 3, 4, 5];
             const expectedResult1 = [5, 1, 2, 3, 4];
             const testData2 = [1];
             const expectedResult2 = [1];
 
-            assert.deepEqual(expectedResult1, utils.rotateArray(testData1));
-            assert.deepEqual(expectedResult2, utils.rotateArray(testData2));
+            assert.deepEqual(expectedResult1, utils.rotateClockwise(testData1));
+            assert.deepEqual(expectedResult2, utils.rotateClockwise(testData2));
         });
 
-        it('should make first element last', () => {
+        it('rotateCounterClockwise should make first element last', () => {
             const testData1 = [1, 2, 3, 4, 5];
             const expectedResult1 = [2, 3, 4, 5, 1];
             const testData2 = [1];
             const expectedResult2 = [1];
 
-            assert.deepEqual(expectedResult1, utils.rotateArray(testData1, false));
-            assert.deepEqual(expectedResult2, utils.rotateArray(testData2, false));
+            assert.deepEqual(expectedResult1, utils.rotateCounterClockwise(testData1));
+            assert.deepEqual(expectedResult2, utils.rotateCounterClockwise(testData2));
         });
     });
 

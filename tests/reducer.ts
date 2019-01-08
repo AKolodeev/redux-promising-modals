@@ -1,8 +1,8 @@
 import { assert } from 'chai';
 import { describe, it } from 'mocha';
 
+import { modalsReducer } from '../src';
 import * as types from '../src/actionTypes';
-import reducer from '../src/reducer';
 
 describe('Modals reducer tests', () => {
     const firstActionType = 'CREATE_USER';
@@ -16,18 +16,11 @@ describe('Modals reducer tests', () => {
         name: 'my_file.txt'
     };
 
-    it('should return the initial state', () => {
-        assert.deepEqual({
-            types: [],
-            props: []
-        }, reducer(undefined, {}));
-    });
-
     it('should handle PUSH_MODAL_WINDOW', () => {
         assert.deepEqual({
             types: [firstActionType],
             props: [firstActionProps]
-        }, reducer({
+        }, modalsReducer({
             types: [], props: []
         }, {
             type: types.PUSH_MODAL_WINDOW,
@@ -40,7 +33,7 @@ describe('Modals reducer tests', () => {
         assert.deepEqual({
             types: [firstActionType, secondActionType],
             props: [firstActionProps, secondActionProps]
-        }, reducer({
+        }, modalsReducer({
             types: [firstActionType],
             props: [firstActionProps]
         }, {
@@ -56,7 +49,7 @@ describe('Modals reducer tests', () => {
         assert.deepEqual({
             types: [firstActionType],
             props: [firstActionProps]
-        }, reducer({
+        }, modalsReducer({
             types: [], props: []
         }, {
             type: types.INSERT_MODAL_WINDOW,
@@ -69,7 +62,7 @@ describe('Modals reducer tests', () => {
         assert.deepEqual({
             types: [secondActionType, firstActionType],
             props: [secondActionProps, firstActionProps]
-        }, reducer({
+        }, modalsReducer({
             types: [firstActionType], props: [firstActionProps]
         }, {
             type: types.INSERT_MODAL_WINDOW,
@@ -84,7 +77,7 @@ describe('Modals reducer tests', () => {
         assert.deepEqual({
             types: [secondActionType],
             props: [secondActionProps]
-        }, reducer({
+        }, modalsReducer({
             types: [secondActionType, firstActionType], props: [secondActionProps, firstActionProps]
         }, {
             type: types.POP_MODAL_WINDOW,
@@ -96,7 +89,7 @@ describe('Modals reducer tests', () => {
         assert.deepEqual({
             types: [],
             props: []
-        }, reducer({
+        }, modalsReducer({
             types: [firstActionType], props: [firstActionProps]
         }, {
             type: types.POP_MODAL_WINDOW,
@@ -110,7 +103,7 @@ describe('Modals reducer tests', () => {
         assert.deepEqual({
             types: [firstActionType],
             props: [firstActionProps]
-        }, reducer({
+        }, modalsReducer({
             types: [secondActionType, firstActionType], props: [secondActionProps, firstActionProps]
         }, {
             type: types.SHIFT_MODAL_WINDOW,
@@ -122,7 +115,7 @@ describe('Modals reducer tests', () => {
         assert.deepEqual({
             types: [],
             props: []
-        }, reducer({
+        }, modalsReducer({
             types: [firstActionType], props: [firstActionProps]
         }, {
             type: types.SHIFT_MODAL_WINDOW,
@@ -136,7 +129,7 @@ describe('Modals reducer tests', () => {
         assert.deepEqual({
             types: [],
             props: []
-        }, reducer({
+        }, modalsReducer({
             types: [secondActionType, firstActionType], props: [secondActionProps, firstActionProps]
         }, {
             type: types.CLEAR_MODAL_WINDOWS
