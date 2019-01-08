@@ -1,18 +1,37 @@
-export const safelyCallFunction = (func) => (...args) => {
-    if (typeof func !== 'function') {
+export const getActionValues = (action) => action.payload && action.payload.values;
+
+export const safelyResolveWithActionValues = (resolve, action) => {
+    if (typeof resolve !== 'function') {
         return false;
     }
 
-    return func(...args);
+    const values = getActionValues(action);
+
+    return resolve(values);
 };
 
-export const getActionValues = (action) => action.payload && action.payload.values;
+export function rotateClockwise<T>(array: T[]) {
+    if (array.length === 0) {
+        return array;
+    }
 
-export const rotateArray = (array, clockwise = true) => {
-    const startPos = clockwise ? array.length - 1 : 0;
-    const arrayCopy = array.slice();
-    const firstElem = arrayCopy.splice(startPos, startPos + 1);
-    return clockwise ? firstElem.concat(arrayCopy) : arrayCopy.concat(firstElem);
-};
+    const copy = array.slice();
+    const movedElement = copy.pop() as T;
 
-export const toArray = (element) => [].concat(element);
+    return [movedElement, ...copy];
+}
+
+export function rotateCounterClockwise<T>(array: T[]) {
+    if (array.length === 0) {
+        return array;
+    }
+
+    const copy = array.slice();
+    const movedElement = copy.shift() as T;
+
+    return copy.concat(movedElement);
+}
+
+export function toArray<T>(element: T | T[]) {
+    return ([] as T[]).concat(element);
+}

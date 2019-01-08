@@ -2,8 +2,8 @@ import { assert } from 'chai';
 import { describe, it } from 'mocha';
 import configureStore from 'redux-mock-store';
 
+import { modalsMiddleware } from '../src';
 import * as actions from '../src/actions';
-import modalsMiddleware from '../src/middleware';
 
 const initialState = {};
 const mockStore = configureStore([modalsMiddleware])(initialState);
