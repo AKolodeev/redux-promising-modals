@@ -4,7 +4,7 @@
   "description": "A middleware, reducer and actions for manipulating modal windows",
   "main": "lib/index.js",
   "scripts": {
-    "build": "tsc --declaration",
+    "build": "tsc",
     "lint": "tslint ./src/*",
     "test": "mocha tests/* --require ts-node/register",
     "release": "standard-version --no-verify",

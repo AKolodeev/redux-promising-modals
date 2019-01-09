@@ -1,9 +1,9 @@
 import { Middleware } from 'redux';
 
-import { ResolverManager } from './ResolverManager';
+import { ModalsActionManager } from './ModalsActionManager';
 
 export const modalsMiddleware: Middleware = () => (next) => {
-    const manager = ResolverManager.getInstance();
+    const manager = ModalsActionManager.getInstance();
 
     return (action) => {
         if (manager.shouldHandleAction(action)) {
