@@ -11,7 +11,7 @@ import {
 } from './actionTypes';
 import { rotateClockwise, rotateCounterClockwise } from './utils';
 
-interface IModalsState {
+export interface IModalsState {
     types: any[];
     props: any[];
 }
