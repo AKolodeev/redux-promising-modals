@@ -1,3 +1,7 @@
+# Deprecation note
+The approach suggested in this repository is outdated. Thus, the repository is not going to be supported.  
+Please, choose a different solution.
+
 ## Synopsis
 A middleware, reducer and actions for manipulating modal windows.  
 The library provides only these things. If you want to see modal window, you could use [react-modal](https://github.com/reactjs/react-modal).  
